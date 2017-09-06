@@ -1,4 +1,8 @@
-FROM ruby:2.4.1-stretch
+FROM gcr.io/cloud-builders/kubectl
 
-ADD https://storage.googleapis.com/kubernetes-release/release/v1.7.5/bin/linux/amd64/kubectl /usr/local/bin/kubectl
-RUN chmod +x /usr/local/bin/kubectl
+RUN add-apt-repository ppa:brightbox/ruby-ng -y
+RUN apt-get update && apt-get install ruby2.4 ruby2.4-dev -y && apt-get clean
+
+RUN gem update --system && gem install bundler
+
+ENTRYPOINT ["/bin/bash"]
