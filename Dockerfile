@@ -1,4 +1,4 @@
-FROM gcr.io/cloud-builders/kubectl
+FROM gcr.io/cloud-builders/kubectl@sha256:120350a8f2a783b28379e09f5aeb4c999dd6e333057e878ee7b2c296baa1c2c0
 
 # Install Kubeval
 ADD https://github.com/garethr/kubeval/releases/download/0.6.0/kubeval-linux-amd64.tar.gz /tmp/kubeval.tar.gz
