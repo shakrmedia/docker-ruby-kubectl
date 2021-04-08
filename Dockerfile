@@ -1,8 +1,8 @@
+FROM garethr/kubeval:0.14.0 AS kubeval
 FROM gcr.io/cloud-builders/kubectl@sha256:120350a8f2a783b28379e09f5aeb4c999dd6e333057e878ee7b2c296baa1c2c0
 
-# Install Kubeval
-ADD https://github.com/garethr/kubeval/releases/download/0.6.0/kubeval-linux-amd64.tar.gz /tmp/kubeval.tar.gz
-RUN tar xf /tmp/kubeval.tar.gz -C /usr/local/bin && rm /tmp/kubeval.tar.gz;
+COPY --from=kubeval /lib/ld-musl-x86_64.so.1 /lib/
+COPY --from=kubeval /kubeval /usr/local/bin/
 
 # Install Ruby 2.4
 RUN add-apt-repository ppa:brightbox/ruby-ng -y
